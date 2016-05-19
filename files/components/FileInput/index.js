@@ -25,10 +25,12 @@ const FileInput = (props) => {
               multiple={ props.multiple }
               onChange={ (event) => {
           map((i) => {
-          number++
-          const iNum = number
-          props.onStartUpload && props.onStartUpload(iNum)
-          props.saveImage(i).then(({result}) => props.onUpload(result.body, iNum))
+          if(i.type.startsWith("image/")) {
+            number++
+            const iNum = number
+            props.onStartUpload && props.onStartUpload(iNum)
+            props.saveImage(i).then(({result}) => props.onUpload(result.body, iNum))
+          }
           }, event.target.files)
           event.target.value = ""
           } }/>
