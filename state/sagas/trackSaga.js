@@ -3,7 +3,6 @@ import {takeEvery} from "redux-saga";
 import {select} from "redux-saga/effects";
 
 export default (trackingCode) => function* trackSaga() {
-  console.log("Track? ", trackingCode)
   if (typeof window !== 'undefined' && !window.location.host.startsWith("dev.") && window.location.hostname !== "localhost") {
     (function(window, document, script, url, r, tag, firstScriptTag) {
       window['GoogleAnalyticsObject'] = r;
@@ -26,11 +25,9 @@ export default (trackingCode) => function* trackSaga() {
 
     const ga = window.ga;
 
-    console.log("create tracking code")
     ga('create', trackingCode, 'auto');
 
     yield* takeEvery([HISTORY_CHANGE], function*(action) {
-      console.log("send")
       ga('send', window.location.href)
     })
   }
