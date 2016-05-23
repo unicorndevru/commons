@@ -25,6 +25,8 @@ export default (trackingCode) => function* trackSaga() {
 
     const ga = window.ga;
 
+    console.log("GA", ga, "code =", trackingCode)
+
     ga('create', trackingCode, 'auto');
 
     yield* takeEvery([HISTORY_CHANGE], function*(action) {
