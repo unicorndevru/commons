@@ -1,1 +1,2 @@
-export WindowWidthMixin from "./WindowWidthMixin"
+export WindowSizeMixin from "./WindowSizeMixin"
+export ScrollMixin from "./ScrollMixin"
