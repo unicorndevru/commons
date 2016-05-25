@@ -29,7 +29,10 @@ export default (trackingCode) => function* trackSaga() {
 
     yield* takeEvery([HISTORY_CHANGE], function*(action) {
       console.log("send", location.pathname)
-      ga('send', 'pageview', location.pathname)
+      ga('send', 'pageview', {
+        page: location.pathname,
+        hitCallback: () => console.log("pageview sent")
+      })
     })
   }
 
