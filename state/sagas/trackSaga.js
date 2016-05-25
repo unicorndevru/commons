@@ -28,7 +28,7 @@ export default (trackingCode) => function* trackSaga() {
     ga('create', trackingCode, 'auto');
 
     yield* takeEvery([HISTORY_CHANGE], function*(action) {
-      ga('send', 'pageview', window.location.href)
+      ga('send', 'pageview')
     })
   }
 
