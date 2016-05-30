@@ -43,13 +43,13 @@
 }
 @component AppHeader {
   position: relative;
-  padding: 24px 24px 24px 124px;
-  height: 100px;
   margin-bottom: 20px;
+  padding: 11px 24px 24px 124px;
+  height: 100px;
   background: #f2f2f2;
   z-index: var(--AppHeader-zIndex);
 
-  @media (--xl) {
+  @media (--m) {
     padding-left: 24px;
   }
 
@@ -58,9 +58,17 @@
     top: 13px;
     left: 11px;
 
-    @media (--xl) {
+    @media (--m) {
       display: none;
     }
+  }
+
+  @descendent container {
+    display: flex;
+  }
+
+  @descendent divider {
+    flex: 1;
   }
 }
 
@@ -75,8 +83,7 @@
   z-index: var(--AppLeftPanel-zIndex);
   overflow-y: auto;
 
-  color: #fff;
-  background-color: #1A237E;
+  background-color: #eee;
 
   @media (--m) {
     position: relative;
