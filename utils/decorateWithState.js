@@ -2,7 +2,7 @@ import React from "react";
 import {map, keys, propOr, merge, equals, pickBy, find, eqProps} from "ramda";
 
 
-export default (pureRender, clearOnPropChange = [], initialState = {}) => React.createClass({
+export default (pureRender, {clearOnPropChange = [], initialState = {}} = {}) => React.createClass({
   componentWillReceiveProps: function(nextProps) {
     find((p) => !eqProps(p, this.props, nextProps), clearOnPropChange) && this.setState(map((v) => undefined, this.state))
   },

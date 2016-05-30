@@ -11,10 +11,11 @@ import {
   RaisedButton,
   TextField,
 } from "material-ui";
+import {decorateWithState} from "commons/utils";
 
 import Menu from 'material-ui/svg-icons/navigation/menu';
 
-const AppHeader = ({ children }) => {
+const AppHeader = ({ children, toggle }) => {
   return (
     <div className="AppHeader">
       <div className="AppHeader-menuBtn">
@@ -22,6 +23,7 @@ const AppHeader = ({ children }) => {
           label="Menu"
           default={true}
           icon={<Menu />}
+          onClick={toggle}
         />
       </div>
       {children}
@@ -53,12 +55,13 @@ const AppRightPanel = ({children}) =>
   </div>;
 
 
-const TriptychView = ({leftPanel, rightPanel, header = "", children}) => {
+const TriptychView = ({leftPanel = "leftPanel", rightPanel, header = "", children, state, setState}) => {
+  const toggleMenu = () => setState({leftPanelActive: !state.leftPanelActive})
   return (
     <Grid className="AppLayout" layout="column">
-      {leftPanel && <AppLeftPanel>{ leftPanel }</AppLeftPanel>}
+      <AppLeftPanel active={state.leftPanelActive} toggle={toggleMenu}>{ leftPanel }</AppLeftPanel>
       <div className="AppLayout-wrap">
-        <AppHeader>{ header }</AppHeader>
+        <AppHeader toggle={toggleMenu}>{ header }</AppHeader>
         <div className="AppLayout-wrapContent">
           <div className="AppLayout-paneGutter" />
           <AppMain>{ children }</AppMain>
@@ -70,4 +73,4 @@ const TriptychView = ({leftPanel, rightPanel, header = "", children}) => {
   )
 }
 
-export default TriptychView
+export default decorateWithState(TriptychView, {initialState: {leftPanelActive: true}})
