@@ -3,8 +3,8 @@ import { put,take,call,select } from 'redux-saga/effects'
 import {GET_AUTH} from '../redux/constants'
 import { intersection, map, toLower } from 'ramda';
 import { push } from 'react-router-redux';
-import {STOP_RESOLVE} from 'commons/state/constants'
-import {resolveKeep} from 'commons/state/redux/actions'
+import {STOP_RESOLVE} from 'commons/resolve/constants'
+import {resolveKeep} from 'commons/resolve/redux/actions'
 
 export const requireAuth = () => call(function*() {
   const userId = yield select((s) => s.auth.userId)

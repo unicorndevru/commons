@@ -10,9 +10,9 @@ const Loading = () => {
 }
 
 const mapStateToProps = (state) => ({
-  isResolving: state.state.resolving,
-  currentSaga: state.state.currentSaga,
-  isClientFirstResolve: state.state.isClientFirstResolve
+  isResolving: state.resolve.resolving,
+  currentSaga: state.resolve.currentSaga,
+  isClientFirstResolve: state.resolve.isClientFirstResolve
 })
 
 export default function RouteResolve(Component, sagaName) {

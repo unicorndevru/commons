@@ -1,7 +1,7 @@
 import { filter, map, propOr, compose, is, identity, F, zipWith, equals, concat, drop } from 'ramda'
 import { call, fork, select, put } from 'redux-saga/effects'
-import {STOP_RESOLVE} from 'commons/state/constants'
-import {resolveSagaStart, resolveSagaEnd} from 'commons/state/redux/actions'
+import {STOP_RESOLVE} from 'commons/resolve/constants'
+import {resolveSagaStart, resolveSagaEnd} from 'commons/resolve/redux/actions'
 
 let previousSagas = []
 
