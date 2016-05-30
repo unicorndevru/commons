@@ -1,7 +1,9 @@
-import { filter, map, propOr, compose, is, identity, F } from 'ramda'
-import { call, fork, select } from 'redux-saga/effects'
+import { filter, map, propOr, compose, is, identity, F, zipWith, equals, concat, drop } from 'ramda'
+import { call, fork, select, put } from 'redux-saga/effects'
 import {STOP_RESOLVE} from 'commons/state/constants'
+import {resolveSagaStart, resolveSagaEnd} from 'commons/state/redux/actions'
 
+let previousSagas = []
 
 export default function* (store, state){
   const { routes } = state
@@ -11,15 +13,25 @@ export default function* (store, state){
     map(propOr(F, 'resolve'))
   )(routes)
 
-  while(0 < routeSagas.length){
-    const saga = routeSagas.shift()
+  const headSagas = zipWith((a,b) => equals(a, b) ? F : b, previousSagas, routeSagas )
+  const actualSagas = concat(headSagas, drop(headSagas.length, routeSagas))
+  previousSagas = routeSagas
+  
+  
+  while(0 < actualSagas.length){
+    const saga = actualSagas.shift()
+
+    const sagaName = saga.name
+    
     let result = null;
 
     try {
+      if(sagaName) yield put(resolveSagaStart(sagaName))
       result = yield call(saga)
+      if(sagaName) yield put(resolveSagaEnd(sagaName))
       if(result === STOP_RESOLVE) {
         //console.log("STOP RESOLVE")
-        routeSagas.splice(0,routeSagas.length)
+        actualSagas.splice(0,routeSagas.length)
       }
       //console.log("should be defined:", result)
     } catch (e) {

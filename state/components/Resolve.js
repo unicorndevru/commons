@@ -11,13 +11,16 @@ const Loading = () => {
 
 const mapStateToProps = (state) => ({
   isResolving: state.state.resolving,
+  currentSaga: state.state.currentSaga,
   isClientFirstResolve: state.state.isClientFirstResolve
 })
 
-export default function RouteResolve(Component) {
+export default function RouteResolve(Component, sagaName) {
 
   const RouteResolveComponent = (props) => {
-    if(props.isResolving) {
+    const isResolving = props.isResolving && (!sagaName || props.currentSaga === sagaName)
+
+    if(isResolving) {
       return <Loading {...props}/>
     } else {
       return <Component {...props}/>
