@@ -1,0 +1,140 @@
+
+@import "commons/styles/variables.css";
+@import "commons/styles/media-queries.css";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+@component AppLayout {
+  width: 100%;
+  min-height: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: row;
+
+  margin: 0 auto;
+  padding: 0;
+
+  @descendent wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    flex: 1;
+  }
+  @descendent wrapContent {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    padding-bottom: 24px;
+  }
+  @descendent paneGutter {
+    display: none;
+
+    @media (--s) {
+      display: block;
+      flex: 1 0 15px;
+    }
+    @media (--m) {
+      flex: 1 0 30px;
+    }
+  }
+}
+@component AppHeader {
+  position: relative;
+  padding: 24px 24px 24px 124px;
+  height: 100px;
+  margin-bottom: 20px;
+  background: #f2f2f2;
+  z-index: var(--AppHeader-zIndex);
+
+  @media (--xl) {
+    padding-left: 24px;
+  }
+
+  @descendent menuBtn {
+    position: absolute;
+    top: 13px;
+    left: 11px;
+
+    @media (--xl) {
+      display: none;
+    }
+  }
+}
+
+@component AppLeftPanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 24px;
+  width: 250px;
+  transform: translateX(-100%);
+  z-index: var(--AppLeftPanel-zIndex);
+  overflow-y: auto;
+
+  color: #fff;
+  background-color: #1A237E;
+
+  @media (--m) {
+    position: relative;
+    flex: 0 0 250px;
+    transform: translateX(0);
+  }
+
+  @when active {
+    margin-left: 0;
+    transform: translateX(0);
+  }
+}
+@component AppMain {
+  flex: 5500 1 605px;
+  min-width: 320px;
+  max-width: 900px;
+  padding: 24px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  border-radius: 2px;
+}
+@component AppRightPanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--AppRightPanel-zIndex);
+
+  padding: 24px;
+  width: 100%;
+  transform: translateX(110%);
+
+  overflow-y: auto;
+
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  border-radius: 2px;
+
+  @media (--m) {
+    width: 675px;
+  }
+
+  @media (--xl) {
+    position: static;
+    flex: 4500 0 495px;
+    max-width: 675px;
+    min-width: 0;
+    margin-left: 0;
+    transform: translateX(0);
+  }
+
+  @when active {
+    margin-left: 0;
+    transform: translateX(0);
+
+    @media (--m) {
+      margin-left: 0;
+      transform: translateX(0);
+    }
+  }
+}
