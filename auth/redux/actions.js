@@ -34,17 +34,15 @@ export const login = (email, password, redirect) => {
   }, LOGIN_USER);
 };
 
-export const signup = ({lastName, firstName, birthday, email, password, redirect}) => {
+export const signup = ({email, password, redirect, ...fields}) => {
   return createApiAction({
     url: '/auth?_expand=user',
     method: 'PUT',
     data: {
-      firstName,
-      lastName,
       email,
-      birthday,
       password,
-      provider: 'email'
+      provider: 'email',
+      ...fields
     },
     redirect: redirect
   }, SIGNUP_USER);
