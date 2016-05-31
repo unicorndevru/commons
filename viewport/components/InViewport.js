@@ -32,6 +32,6 @@ export default React.createClass({
     },
 
     render: function() {
-        return (<div ref="inport">{this.props.children || null}</div>)
+        return (<div ref="inport">{this.props.children || ""}</div>)
     }
 })
