@@ -4,7 +4,8 @@ import {
     RESOLVE_SAGA_END,
     RESOLVE_SAGA_START,
     RESOLVED_ON_SERVER,
-    RESOLVE_KEEP
+    RESOLVE_KEEP,
+    RESOLVE_SET_PREV_PATH
 } from "./constants";
 
 export const resolvedOnServer = () => ({
@@ -17,6 +18,11 @@ export const resolveStart = () => ({
 
 export const resolveEnd = () => ({
   type: RESOLVE_ROUTE_END
+})
+
+export const resolveSetPrevPath = (path) => ({
+  type: RESOLVE_SET_PREV_PATH,
+  path
 })
 
 export const resolveSagaStart = (name) => ({

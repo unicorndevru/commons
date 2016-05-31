@@ -1,23 +1,33 @@
-import { filter, map, propOr, compose, is, identity, F, zipWith, equals, concat, drop } from 'ramda'
+import { filter, map, propOr, zip, is, identity, F, zipWith, equals, concat, drop, addIndex } from 'ramda'
 import { call, fork, select, put } from 'redux-saga/effects'
 import {STOP_RESOLVE} from 'commons/resolve/constants'
-import {resolveSagaStart, resolveSagaEnd} from 'commons/resolve/redux/actions'
+import {resolveSagaStart, resolveSagaEnd, resolveSetPrevPath} from 'commons/resolve/redux/actions'
 
-let previousSagas = []
+const mapIndexed = addIndex(map)
 
 export default function* (store, state){
   const { routes } = state
 
-  const routeSagas = compose(
-    filter(identity),
-    map(propOr(F, 'resolve'))
-  )(routes)
+  const prevPath = yield select((s) => s.resolve.prevPath)
 
-  const headSagas = zipWith((a,b) => equals(a, b) ? F : b, previousSagas, routeSagas )
-  const actualSagas = concat(headSagas, drop(headSagas.length, routeSagas))
-  previousSagas = routeSagas
-  
-  
+  const routeSagas = map(propOr(F, 'resolve'))(routes)
+
+  const routeParams = yield select((s) => s.resolve.params)
+  const routePath = map((p) => p.startsWith(":") ? routeParams[p.substring(1)] : p)(map(propOr("", 'path'))(routes))
+
+  let pathChanged = false
+
+  const actualSagas = mapIndexed((s, i) => {
+    if(pathChanged) {
+      return s
+    } else if(i === prevPath.length || prevPath[i] !== routePath[i]) {
+      pathChanged = true
+      return s
+    } else {
+      return F
+    }
+  })(routeSagas)
+
   while(0 < actualSagas.length){
     const saga = actualSagas.shift()
 
@@ -47,5 +57,7 @@ export default function* (store, state){
         }
       }
     }
+
+    yield put(resolveSetPrevPath(routePath))
   }
 }

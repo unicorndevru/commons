@@ -4,34 +4,34 @@ import {
     RESOLVE_SAGA_END,
     RESOLVE_SAGA_START,
     RESOLVED_ON_SERVER,
-    RESOLVE_KEEP
+    RESOLVE_KEEP,
+    RESOLVE_SET_PREV_PATH
 } from "./constants";
 import {createReducer} from "commons/utils";
 import {HISTORY_CHANGE} from "commons/containers/constants";
 
-export default createReducer({}, {
-  [RESOLVED_ON_SERVER]: (state, action) => {
-    return {
-      ...state,
-      isClientFirstResolve: true
-    }
-  },
+export default createReducer({prevPath: []}, {
+  [RESOLVED_ON_SERVER]: (state, action) => ({
+    ...state,
+    isClientFirstResolve: true
+  }),
 
-  [RESOLVE_ROUTE_START]: (state, action) => {
-    return {
-      ...state,
-      resolving: true
-    }
-  },
+  [RESOLVE_ROUTE_START]: (state, action) => ({
+    ...state,
+    resolving: true
+  }),
 
-  [RESOLVE_ROUTE_END]: (state, action) => {
-    return {
-      ...state,
-      keepResolve: false,
-      resolving: !!state.keepResolve,
-      isClientFirstResolve: false
-    }
-  },
+  [RESOLVE_ROUTE_END]: (state, action) => ({
+    ...state,
+    keepResolve: false,
+    resolving: !!state.keepResolve,
+    isClientFirstResolve: false
+  }),
+
+  [RESOLVE_SET_PREV_PATH]: (state, action) => ({
+    ...state,
+    prevPath: action.path
+  }),
 
   [RESOLVE_KEEP]: (state, action) => ({
     ...state,
@@ -52,6 +52,7 @@ export default createReducer({}, {
     return {
       ...state,
       query: action.state.location.query,
+      params: action.state.params,
       resolving: true
     }
   }
