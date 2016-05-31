@@ -55,7 +55,7 @@ export const TriptychRight = ({children}) =>
   </div>;
 
 export const TriptychMainWrapper = (Component) => ({children, ...props}) =>
-    <div>
+    <div className="AppLayout-wrapContainer">
       <TriptychMain><Component {...props}/></TriptychMain>
       {children && <TriptychRight>{ children }</TriptychRight> }
     </div>

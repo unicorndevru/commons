@@ -40,6 +40,10 @@
       flex: 1 0 30px;
     }
   }
+  @descendent wrapContainer {
+    display: flex;
+    flex: 1;
+  }
 }
 @component AppHeader {
   position: relative;
@@ -114,12 +118,10 @@
 
   padding: 24px;
   width: 100%;
-  transform: translateX(110%);
-
   overflow-y: auto;
 
   background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
   border-radius: 2px;
 
   @media (--m) {
@@ -131,17 +133,6 @@
     flex: 4500 0 495px;
     max-width: 675px;
     min-width: 0;
-    margin-left: 0;
     transform: translateX(0);
-  }
-
-  @when active {
-    margin-left: 0;
-    transform: translateX(0);
-
-    @media (--m) {
-      margin-left: 0;
-      transform: translateX(0);
-    }
   }
 }
