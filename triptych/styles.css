@@ -82,13 +82,14 @@
   top: 0;
   left: 0;
   bottom: 0;
-  padding: 24px;
+  padding: 24px 0;
   width: 250px;
   transform: translateX(-100%);
   z-index: var(--AppLeftPanel-zIndex);
   overflow-y: auto;
 
-  background-color: #eee;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
 
   @media (--m) {
     position: relative;
