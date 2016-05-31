@@ -44,16 +44,21 @@ const AppLeftPanel = ({ children, active }) => {
   );
 };
 
-const AppMain = ({children}) =>
+export const TriptychMain = ({children}) =>
   <div className="AppMain">
     { children }
   </div>;
 
-const AppRightPanel = ({children}) =>
+export const TriptychRight = ({children}) =>
   <div className="AppRightPanel">
     { children }
   </div>;
 
+export const TriptychMainWrapper = (Component) => ({children, ...props}) =>
+    <div>
+      <TriptychMain><Component {...props}/></TriptychMain>
+      {children && <TriptychRight>{ children }</TriptychRight> }
+    </div>
 
 const TriptychView = ({leftPanel = "leftPanel", rightPanel, header = "", children, state, setState}) => {
   const toggleMenu = () => setState({leftPanelActive: !state.leftPanelActive})
@@ -64,8 +69,7 @@ const TriptychView = ({leftPanel = "leftPanel", rightPanel, header = "", childre
         <AppHeader toggle={toggleMenu}>{ header }</AppHeader>
         <div className="AppLayout-wrapContent">
           <div className="AppLayout-paneGutter" />
-          <AppMain>{ children }</AppMain>
-          {rightPanel && <AppRightPanel>{rightPanel}</AppRightPanel>}
+          {children}
           <div className="AppLayout-paneGutter" />
         </div>
       </div>
@@ -73,4 +77,4 @@ const TriptychView = ({leftPanel = "leftPanel", rightPanel, header = "", childre
   )
 }
 
-export default decorateWithState(TriptychView, {initialState: {leftPanelActive: true}})
+export const Triptych = decorateWithState(TriptychView, {initialState: {leftPanelActive: true}})
