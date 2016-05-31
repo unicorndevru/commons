@@ -36,13 +36,14 @@
       display: block;
       flex: 1 0 15px;
     }
-    @media (--m) {
+    @media (--xl) {
       flex: 1 0 30px;
     }
   }
   @descendent wrapContainer {
     display: flex;
-    flex: 1;
+    flex: 1 1 900px;
+    justify-content: center;
   }
 }
 @component AppHeader {
@@ -106,7 +107,6 @@
   max-width: 900px;
   padding: 24px;
   background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
   border-radius: 2px;
 }
 @component AppRightPanel {
@@ -121,7 +121,7 @@
   overflow-y: auto;
 
   background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
   border-radius: 2px;
 
   @media (--m) {
