@@ -22,6 +22,10 @@
     flex-direction: column;
     min-height: 100vh;
     flex: 1;
+
+    @media (--m) {
+      margin-left: 250px;
+    }
   }
   @descendent wrapContent {
     display: flex;
@@ -95,8 +99,8 @@
   will-change: transform;
 
   @media (--m) {
-    position: relative;
-    flex: 0 0 250px;
+    /*position: relative;
+    flex: 0 0 250px;*/
     transform: translateX(0);
   }
 
