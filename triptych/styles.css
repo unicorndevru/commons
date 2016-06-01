@@ -91,6 +91,9 @@
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
 
+  backface-visibility: hidden;
+  will-change: transform;
+
   @media (--m) {
     position: relative;
     flex: 0 0 250px;
@@ -98,8 +101,11 @@
   }
 
   @when active {
-    margin-left: 0;
-    transform: translateX(0);
+    animation-iteration-count: 1;
+    animation-duration: 0.3s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+    animation-name: LeftPanel-ShowAnimation;
   }
 }
 @component AppMain {
@@ -125,15 +131,34 @@
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
   border-radius: 2px;
 
+  animation-iteration-count: 1;
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+  animation-name: RightPanel-ShowAnimation;
+
   @media (--m) {
     width: 675px;
   }
+}
 
-  @media (--xl) {
-    position: static;
-    flex: 4500 0 495px;
-    max-width: 675px;
-    min-width: 0;
-    transform: translateX(0);
+@keyframes LeftPanel-ShowAnimation {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+@keyframes RightPanel-ShowAnimation {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
   }
 }

@@ -77,4 +77,4 @@ const TriptychView = ({leftPanel = "leftPanel", rightPanel, header = "", childre
   )
 }
 
-export const Triptych = decorateWithState(TriptychView, {initialState: {leftPanelActive: true}})
+export const Triptych = decorateWithState(TriptychView, {initialState: {leftPanelActive: false}})
