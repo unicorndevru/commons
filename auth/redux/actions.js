@@ -34,13 +34,14 @@ export const login = (email, password, redirect) => {
   }, LOGIN_USER);
 };
 
-export const signup = ({...fields}, redirect) => {
+export const signup = (fields, redirect) => {
+  console.log(fields)
   return createApiAction({
     url: '/auth?_expand=user',
     method: 'PUT',
     data: {
       ...fields,
-      provider: 'email',
+      provider: 'email'
     },
     redirect: redirect
   }, SIGNUP_USER);
