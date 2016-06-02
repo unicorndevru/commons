@@ -1,0 +1,43 @@
+@component Pagination {
+  margin-top: 30px;
+
+  @descendent loadMore {
+    @descendent container {
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  @descendent list {
+    padding: 12px 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #fafafa;
+  }
+  @descendent item {
+    padding: 0 6px;
+  }
+  @descendent divider {
+    flex: 1;
+  }
+}
+
+
+@component GoTo {
+  display: flex;
+  align-items: center;
+
+  @descendent inputContainer {
+    margin-left: 10px;
+    width: 40px;
+    text-align: center;
+  }
+}
+@component Limit {
+  display: flex;
+  align-items: center;
+
+}
