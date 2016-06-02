@@ -8,7 +8,7 @@
     Z-indexes:
   */
 
-  --AppHeader-zIndex: 10;
+  --AppHeader-zIndex: 0;
   --AppLeftPanel-zIndex: 11;
   --AppRightPanel-zIndex: 12;
 }

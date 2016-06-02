@@ -14,6 +14,7 @@ import {
 import {decorateWithState} from "commons/utils";
 
 import Menu from 'material-ui/svg-icons/navigation/menu';
+import Close from 'material-ui/svg-icons/navigation/close';
 
 const AppHeader = ({ children, toggle }) => {
   return (
@@ -51,6 +52,11 @@ export const TriptychMain = ({children}) =>
 
 export const TriptychRight = ({children}) =>
   <div className="AppRightPanel">
+    <div className="AppRightPanel-closeBtnContainer">
+      <IconButton>
+        <Close />
+      </IconButton>
+    </div>
     { children }
   </div>;
 

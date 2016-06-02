@@ -7,7 +7,7 @@
 }
 
 body {
-  overflow: hidden;  
+  overflow: hidden;
 }
 
 @component AppLayout {
@@ -35,9 +35,6 @@ body {
     display: flex;
     flex-direction: row;
     min-height: 1px;
-    flex: 1 1 auto;
-
-    padding-bottom: 24px;
     z-index: 0;
     flex: 1 1 0%;
   }
@@ -156,6 +153,12 @@ body {
     flex: 4500 0 495px;
     max-width: 675px;
     min-width: 0;
+  }
+
+  @descendent closeBtnContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }
 
