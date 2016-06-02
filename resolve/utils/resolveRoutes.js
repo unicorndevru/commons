@@ -31,14 +31,11 @@ export default function* (store, state){
   while(0 < actualSagas.length){
     const saga = actualSagas.shift()
 
-    const sagaName = saga.name
-    
     let result = null;
 
     try {
-      if(sagaName) yield put(resolveSagaStart(sagaName))
       result = yield call(saga)
-      if(sagaName) yield put(resolveSagaEnd(sagaName))
+      yield put(resolveSagaEnd())
       if(result === STOP_RESOLVE) {
         //console.log("STOP RESOLVE")
         actualSagas.splice(0,routeSagas.length)

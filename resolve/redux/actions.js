@@ -30,9 +30,8 @@ export const resolveSagaStart = (name) => ({
   name
 })
 
-export const resolveSagaEnd = (name) => ({
-  type: RESOLVE_SAGA_END,
-  name
+export const resolveSagaEnd = () => ({
+  type: RESOLVE_SAGA_END
 })
 
 export const resolveKeep = () => ({

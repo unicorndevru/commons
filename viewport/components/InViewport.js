@@ -16,6 +16,7 @@ export default React.createClass({
 
     handleViewportChange: function(e) {
         const inViewport = checkVisible(this.refs.inport)
+
         if(this.state.inViewport !== inViewport) {
             this.setState({inViewport})
             const fn = inViewport ? "onIn" : "onOut"
@@ -24,11 +25,13 @@ export default React.createClass({
     },
 
     componentDidMount: function() {
-        window && window.addEventListener('scroll', this.handleViewportChange) && window.addEventListener('resize', this.handleViewportChange);
+        window.addEventListener('wheel', this.handleViewportChange)
+        window.addEventListener('resize', this.handleViewportChange)
     },
 
     componentWillUnmount: function() {
-        window && window.removeEventListener('scroll', this.handleViewportChange) && window.removeEventListener('resize', this.handleViewportChange);
+        window.removeEventListener('wheel', this.handleViewportChange)
+        window.removeEventListener('resize', this.handleViewportChange);
     },
 
     render: function() {
