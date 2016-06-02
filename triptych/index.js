@@ -32,7 +32,7 @@ const AppLeftPanel = ({children, active}) => {
   );
 
   return (
-      <div className={AppLeftPanelClasses}>
+      <div className={AppLeftPanelClasses} id="triptych-menu">
         { children }
       </div>
   );
@@ -71,8 +71,21 @@ export const TriptychMainWrapper = (Component, onCloseTo) => ({children, ...prop
 
 const TriptychView = ({leftPanel = "leftPanel", header = "", children, state, setState}) => {
   const toggleMenu = () => setState({leftPanelActive: !state.leftPanelActive})
+  const closeOnClick = (e) => {
+    if(state.leftPanelActive) {
+      let el = e.target;
+      let inPanel = false;
+      do {
+        if(el.id === "triptych-menu") {
+          inPanel = true;
+          break;
+        }
+      } while(el = el.parentNode)
+      if(!inPanel) setState({leftPanelActive: false})
+    }
+  }
   return (
-      <Grid className="AppLayout" layout="column">
+      <Grid className="AppLayout" layout="column" onClick={closeOnClick}>
         <AppLeftPanel active={state.leftPanelActive} toggle={toggleMenu}>{ leftPanel }</AppLeftPanel>
         <div className="AppLayout-wrap">
           <AppHeader toggle={toggleMenu}>{ header }</AppHeader>
