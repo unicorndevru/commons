@@ -2,7 +2,7 @@ import {clone, isEmpty} from 'ramda'
 import queryString from 'query-string'
 
 
-export default (urlTemplate, params) => {
+export default (urlTemplate, params, query = {}) => {
   const urlParams = clone(params)
   const interpolatedUrl = urlTemplate.replace(/:([\w\d-]+)/, (sustr, match) => {
     if(params[match]){
