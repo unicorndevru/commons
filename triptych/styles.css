@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow: hidden;  
+}
+
 @component AppLayout {
   width: 100%;
   min-height: 100%;
@@ -20,8 +24,8 @@
   @descendent wrap {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    flex: 1;
+    height: 100vh;
+    flex: 1 1 auto;
 
     @media (--m) {
       margin-left: 250px;
@@ -30,8 +34,12 @@
   @descendent wrapContent {
     display: flex;
     flex-direction: row;
-    flex: 1;
+    min-height: 1px;
+    flex: 1 1 auto;
+
     padding-bottom: 24px;
+    z-index: 0;
+    flex: 1 1 0%;
   }
   @descendent paneGutter {
     display: none;
@@ -99,8 +107,6 @@
   will-change: transform;
 
   @media (--m) {
-    /*position: relative;
-    flex: 0 0 250px;*/
     transform: translateX(0);
   }
 
@@ -119,6 +125,7 @@
   padding: 24px;
   background-color: #fff;
   border-radius: 2px;
+  overflow-y: auto;
 }
 @component AppRightPanel {
   position: fixed;
@@ -143,6 +150,12 @@
 
   @media (--m) {
     width: 675px;
+  }
+  @media (--xl) {
+    position: static;
+    flex: 4500 0 495px;
+    max-width: 675px;
+    min-width: 0;
   }
 }
 
