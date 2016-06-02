@@ -1,0 +1,14 @@
+:root {
+
+  --s:     700px;
+  --m:     960px;
+  --l:     1280px;
+
+  /*
+    Z-indexes:
+  */
+
+  --AppHeader-zIndex: 0;
+  --AppLeftPanel-zIndex: 11;
+  --AppRightPanel-zIndex: 12;
+}

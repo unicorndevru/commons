@@ -1,0 +1,184 @@
+
+@import "commons/styles/variables.css";
+@import "commons/styles/media-queries.css";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
+@component AppLayout {
+  width: 100%;
+  min-height: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: row;
+
+  margin: 0 auto;
+  padding: 0;
+
+  @descendent wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    flex: 1 1 auto;
+
+    @media (--m) {
+      margin-left: 250px;
+    }
+  }
+  @descendent wrapContent {
+    display: flex;
+    flex-direction: row;
+    min-height: 1px;
+    z-index: 0;
+    flex: 1 1 0%;
+  }
+  @descendent paneGutter {
+    display: none;
+
+    @media (--s) {
+      display: block;
+      flex: 1 0 15px;
+    }
+    @media (--xl) {
+      flex: 1 0 30px;
+    }
+  }
+  @descendent wrapContainer {
+    display: flex;
+    flex: 1 1 900px;
+    justify-content: center;
+  }
+}
+@component AppHeader {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 11px 24px 24px 124px;
+  height: 100px;
+  background: #f2f2f2;
+  z-index: var(--AppHeader-zIndex);
+
+  @media (--m) {
+    padding-left: 24px;
+  }
+
+  @descendent menuBtn {
+    position: absolute;
+    top: 13px;
+    left: 11px;
+
+    @media (--m) {
+      display: none;
+    }
+  }
+
+  @descendent container {
+    display: flex;
+  }
+
+  @descendent divider {
+    flex: 1;
+  }
+}
+
+@component AppLeftPanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 24px 0;
+  width: 250px;
+  transform: translateX(-100%);
+  z-index: var(--AppLeftPanel-zIndex);
+  overflow-y: auto;
+
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+
+  backface-visibility: hidden;
+  will-change: transform;
+
+  @media (--m) {
+    transform: translateX(0);
+  }
+
+  @when active {
+    animation-iteration-count: 1;
+    animation-duration: 0.3s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+    animation-name: LeftPanel-ShowAnimation;
+  }
+}
+@component AppMain {
+  flex: 5500 1 605px;
+  min-width: 320px;
+  max-width: 900px;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 2px;
+  overflow-y: auto;
+}
+@component AppRightPanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--AppRightPanel-zIndex);
+
+  padding: 24px;
+  width: 100%;
+  overflow-y: auto;
+
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  border-radius: 2px;
+
+  animation-iteration-count: 1;
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+  animation-name: RightPanel-ShowAnimation;
+
+  @media (--m) {
+    width: 675px;
+  }
+  @media (--xl) {
+    position: static;
+    flex: 4500 0 495px;
+    max-width: 675px;
+    min-width: 0;
+  }
+
+  @descendent closeBtnContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+@keyframes LeftPanel-ShowAnimation {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+@keyframes RightPanel-ShowAnimation {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}

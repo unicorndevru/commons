@@ -5,7 +5,7 @@ import {
     GET_AUTH,
     UPDATE_TOKEN
 } from "./constants";
-import {RESOLVED_ON_SERVER} from "commons/state/redux/constants";
+import {RESOLVED_ON_SERVER} from "commons/resolve/redux/constants";
 import {createReducer} from "commons/utils";
 
 export default createReducer({}, {

@@ -1,5 +1,5 @@
 import {SET_PAGE_PROPS} from "./constants";
-import {RESOLVE_ROUTE_START} from "commons/state/redux/constants";
+import {RESOLVE_ROUTE_START} from "commons/resolve/redux/constants";
 import {createReducer} from "commons/utils";
 
 export default createReducer({}, {

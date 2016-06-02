@@ -8,7 +8,7 @@ import resolveRoutes from '../utils/resolveRoutes'
 
 export default function* resolve(){
   yield* takeLatest(HISTORY_CHANGE, function*({ store, state }){
-    if(!(yield select(store => store.state.isClientFirstResolve))){
+    if(!(yield select(store => store.resolve.isClientFirstResolve))){
       yield put(resolveStart())
       yield resolveRoutes(store, state)
     }
