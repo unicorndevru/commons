@@ -9,6 +9,7 @@ import {
 } from "./constants";
 import {createReducer} from "commons/utils";
 import {HISTORY_CHANGE} from "commons/containers/constants";
+import queryString from "query-string";
 
 export default createReducer({prevPath: []}, {
   [RESOLVED_ON_SERVER]: (state, action) => ({
@@ -48,12 +49,10 @@ export default createReducer({prevPath: []}, {
     currentSaga: null
   }),
 
-  [HISTORY_CHANGE]: (state, action) => {
-    return {
-      ...state,
-      query: action.state.location.query,
-      params: action.state.params,
-      resolving: true
-    }
-  }
+  [HISTORY_CHANGE]: (state, action) => ({
+    ...state,
+    query: action.state.location.query || (action.state.location.search && queryString.parse(action.state.location.search)) || {},
+    params: action.state.params,
+    resolving: true
+  })
 })
