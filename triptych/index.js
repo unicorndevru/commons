@@ -25,7 +25,7 @@ const AppHeader = ({children}) => {
   );
 };
 
-const AppLeftPanel = ({children, active, props}) => {
+const AppLeftPanel = ({children, projectTitle, active, onLogout}) => {
   const AppLeftPanelClasses = classnames(
       'AppLeftPanel',
       {'is-active': active},
@@ -35,12 +35,12 @@ const AppLeftPanel = ({children, active, props}) => {
       <div className={AppLeftPanelClasses} id="triptych-menu">
         <div className="AppLeftPanel-container">
           <div className="AppLeftPanel-header">
-            <Link className="AppLeftPanel-logoLink" to="/">Freedrink.club</Link>
+            <Link className="AppLeftPanel-logoLink" to="/">{ projectTitle }</Link>
           </div>
           { children }
         </div>
         <div className="AppLeftPanel-footer">
-          <a className="AppLeftPanel-footerLink" href="javascript:void(0)">Выйти</a>
+          <a className="AppLeftPanel-footerLink" onClick={onLogout}>Выйти</a>
         </div>
       </div>
   );
@@ -78,7 +78,7 @@ export const TriptychMainWrapper = (Component, header, onCloseTo) => ({children,
       {children && <TriptychRight onCloseTo={onCloseTo}>{ children }</TriptychRight> }
     </div>
 
-const TriptychView = ({leftPanel = "leftPanel", children, state, setState}) => {
+const TriptychView = ({leftPanel = "leftPanel", projectTitle = "", onLogout = () => "", children, state, setState}) => {
   const closeOnClick = (e) => {
     if(state.leftPanelActive) {
       let el = e.target;
@@ -102,7 +102,11 @@ const TriptychView = ({leftPanel = "leftPanel", children, state, setState}) => {
   }
   return (
       <Grid className="AppLayout" layout="column" onClick={closeOnClick}>
-        <AppLeftPanel active={state.leftPanelActive}>{ leftPanel }</AppLeftPanel>
+        <AppLeftPanel
+            active={state.leftPanelActive}
+            projectTitle={projectTitle}
+            onLogout={onLogout}
+        >{ leftPanel }</AppLeftPanel>
         <div className="AppLayout-wrap">
           <div className="AppLayout-wrapContent">
             {children}
