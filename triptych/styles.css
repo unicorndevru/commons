@@ -45,7 +45,7 @@
   margin-bottom: 20px;
   padding: 11px 24px 24px 124px;
   height: 100px;
-  background: #f2f2f2;
+  background-color: #fff;
   z-index: var(--AppHeader-zIndex);
 
   @media (--m) {
@@ -83,7 +83,7 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
-  background-color: #fff;
+  background-color: #f2f2f2;
   box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
 
   backface-visibility: hidden;
