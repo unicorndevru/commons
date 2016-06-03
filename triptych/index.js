@@ -9,7 +9,7 @@ import {Link} from "react-router";
 import Menu from "material-ui/svg-icons/navigation/menu";
 import Close from "material-ui/svg-icons/navigation/close";
 
-const AppHeader = ({children, toggle}) => {
+const AppHeader = ({children}) => {
   return (
       <div className="AppHeader">
         <div className="AppHeader-menuBtn">
@@ -17,7 +17,7 @@ const AppHeader = ({children, toggle}) => {
               label="Menu"
               default={true}
               icon={<Menu />}
-              onClick={toggle}
+              id="triptych-open-menu"
           />
         </div>
         {children}
@@ -71,14 +71,14 @@ export const TriptychRight = connect(
   </div>);
 })
 
-export const TriptychMainWrapper = (Component, onCloseTo) => ({children, ...props}) =>
+export const TriptychMainWrapper = (Component, header, onCloseTo) => ({children, ...props}) =>
     <div className="AppLayout-wrapContainer">
+      <AppHeader>{ header }</AppHeader>
       <TriptychMain><Component {...props}/></TriptychMain>
       {children && <TriptychRight onCloseTo={onCloseTo}>{ children }</TriptychRight> }
     </div>
 
-const TriptychView = ({leftPanel = "leftPanel", header = "", children, state, setState}) => {
-  const toggleMenu = () => setState({leftPanelActive: !state.leftPanelActive})
+const TriptychView = ({leftPanel = "leftPanel", children, state, setState}) => {
   const closeOnClick = (e) => {
     if(state.leftPanelActive) {
       let el = e.target;
@@ -90,13 +90,20 @@ const TriptychView = ({leftPanel = "leftPanel", header = "", children, state, se
         }
       } while(el = el.parentNode)
       if(!inPanel) setState({leftPanelActive: false})
+    } else {
+      let el = e.target;
+      do {
+        if(el.id === "triptych-open-menu") {
+          setState({leftPanelActive: true})
+          break;
+        }
+      } while(el = el.parentNode)
     }
   }
   return (
       <Grid className="AppLayout" layout="column" onClick={closeOnClick}>
-        <AppLeftPanel active={state.leftPanelActive} toggle={toggleMenu}>{ leftPanel }</AppLeftPanel>
+        <AppLeftPanel active={state.leftPanelActive}>{ leftPanel }</AppLeftPanel>
         <div className="AppLayout-wrap">
-          <AppHeader toggle={toggleMenu}>{ header }</AppHeader>
           <div className="AppLayout-wrapContent">
             {children}
           </div>
