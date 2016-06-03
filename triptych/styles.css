@@ -76,12 +76,10 @@
   top: 0;
   left: 0;
   bottom: 0;
-  padding: 24px 0;
+  padding: 0;
   width: 250px;
   transform: translateX(-100%);
   z-index: var(--AppLeftPanel-zIndex);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 
   background-color: #f2f2f2;
   box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
@@ -99,6 +97,40 @@
     animation-timing-function: ease;
     animation-fill-mode: both;
     animation-name: LeftPanel-ShowAnimation;
+  }
+
+  @descendent container {
+    margin-bottom: 70px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+  }
+  @descendent header {
+    margin: 24px;
+  }
+  @descendent logoLink {
+    display: block;
+    padding: 0;
+    font-size: 18px;
+    color: #444;
+    text-decoration: none;
+  }
+  @descendent footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 24px;
+    width: 250px;
+    background-color: #f2f2f2;
+  }
+  @descendent footerLink {
+    display: block;
+    color: #444;
+    text-decoration: none;
   }
 }
 @component AppMain {

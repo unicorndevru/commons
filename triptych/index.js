@@ -25,7 +25,7 @@ const AppHeader = ({children, toggle}) => {
   );
 };
 
-const AppLeftPanel = ({children, active}) => {
+const AppLeftPanel = ({children, active, props}) => {
   const AppLeftPanelClasses = classnames(
       'AppLeftPanel',
       {'is-active': active},
@@ -33,7 +33,15 @@ const AppLeftPanel = ({children, active}) => {
 
   return (
       <div className={AppLeftPanelClasses} id="triptych-menu">
-        { children }
+        <div className="AppLeftPanel-container">
+          <div className="AppLeftPanel-header">
+            <Link className="AppLeftPanel-logoLink" to="/">Freedrink.club</Link>
+          </div>
+          { children }
+        </div>
+        <div className="AppLeftPanel-footer">
+          <a className="AppLeftPanel-footerLink" href="javascript:void(0)">Выйти</a>
+        </div>
       </div>
   );
 };
