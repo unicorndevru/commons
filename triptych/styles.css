@@ -6,10 +6,6 @@
   box-sizing: border-box;
 }
 
-body {
-  overflow: hidden;
-}
-
 @component AppLayout {
   width: 100%;
   min-height: 100%;
@@ -38,20 +34,9 @@ body {
     z-index: 0;
     flex: 1 1 0%;
   }
-  @descendent paneGutter {
-    display: none;
-
-    @media (--s) {
-      display: block;
-      flex: 1 0 15px;
-    }
-    @media (--xl) {
-      flex: 1 0 30px;
-    }
-  }
   @descendent wrapContainer {
     display: flex;
-    flex: 1 1 900px;
+    flex: 1;
     justify-content: center;
   }
 }
@@ -117,9 +102,7 @@ body {
   }
 }
 @component AppMain {
-  flex: 5500 1 605px;
-  min-width: 320px;
-  max-width: 900px;
+  flex: 1;
   padding: 24px;
   background-color: #fff;
   border-radius: 2px;
@@ -149,13 +132,18 @@ body {
   animation-name: RightPanel-ShowAnimation;
 
   @media (--m) {
-    width: 675px;
+    width: 500px;
   }
   @media (--xl) {
     position: static;
-    flex: 4500 0 495px;
-    max-width: 675px;
-    min-width: 0;
+    margin-left: 24px;
+    width: 500px;
+  }
+  @media (--xxl) {
+    width: 600px;
+  }
+  @media (--xxxl) {
+    width: 800px;
   }
 
   @descendent closeBtnContainer {

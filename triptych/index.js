@@ -90,9 +90,7 @@ const TriptychView = ({leftPanel = "leftPanel", header = "", children, state, se
         <div className="AppLayout-wrap">
           <AppHeader toggle={toggleMenu}>{ header }</AppHeader>
           <div className="AppLayout-wrapContent">
-            <div className="AppLayout-paneGutter"/>
             {children}
-            <div className="AppLayout-paneGutter"/>
           </div>
         </div>
       </Grid>
