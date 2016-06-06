@@ -9,22 +9,6 @@ import {Link} from "react-router";
 import Menu from "material-ui/svg-icons/navigation/menu";
 import Close from "material-ui/svg-icons/navigation/close";
 
-const AppHeader = ({children}) => {
-  return (
-      <div className="AppHeader">
-        <div className="AppHeader-menuBtn">
-          <FlatButton
-              label="Menu"
-              default={true}
-              icon={<Menu />}
-              id="triptych-open-menu"
-          />
-        </div>
-        {children}
-      </div>
-  );
-};
-
 const AppLeftPanel = ({children, projectTitle, active, onLogout}) => {
   const AppLeftPanelClasses = classnames(
       'AppLeftPanel',
@@ -71,9 +55,8 @@ export const TriptychRight = connect(
   </div>);
 })
 
-export const TriptychMainWrapper = (Component, header, onCloseTo) => ({children, ...props}) =>
+export const TriptychMainWrapper = (Component, onCloseTo) => ({children, ...props}) =>
     <div className="AppLayout-wrapContainer">
-      <AppHeader>{ header }</AppHeader>
       <TriptychMain><Component {...props}/></TriptychMain>
       {children && <TriptychRight onCloseTo={onCloseTo}>{ children }</TriptychRight> }
     </div>
