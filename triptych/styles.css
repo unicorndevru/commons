@@ -81,7 +81,7 @@
     width: 250px;
   }
   @descendent header {
-    margin: 24px;
+    margin: 18px 24px 24px 24px;
   }
   @descendent logoLink {
     display: block;
@@ -104,14 +104,6 @@
     text-decoration: none;
   }
 }
-@component AppMain {
-  flex: 1;
-  padding: 24px;
-  background-color: #fff;
-  border-radius: 2px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
 @component AppRightPanel {
   position: fixed;
   top: 0;
@@ -119,7 +111,7 @@
   bottom: 0;
   z-index: var(--AppRightPanel-zIndex);
 
-  padding: 24px;
+  padding: 2px 24px 24px 24px;
   width: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;

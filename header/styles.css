@@ -5,12 +5,16 @@
 @component AppHeader {
   position: relative;
   margin-bottom: 20px;
-  padding: 11px 24px 24px 124px;
+  padding: 2px 24px 24px 24px;
   background-color: #fff;
   z-index: var(--AppHeader-zIndex);
 
-  @media (--m) {
-    padding-left: 24px;
+  @descendent top {
+    padding-left: 100px;
+
+    @media (--m) {
+      padding-left: 0;
+    }
   }
 
   @descendent menuBtn {
@@ -24,10 +28,26 @@
   }
 
   @descendent container {
-    display: flex;
+
+    @media (--s) {
+      display: flex;
+      align-items: center;
+    }
   }
 
   @descendent divider {
     flex: 1;
+  }
+
+  @descendent filter {
+    display: flex;
+    align-items: center;
+  }
+  @descendent filterInput {
+    position: relative;
+    top: -14px;
+  }
+  @descendent filterCount {
+    margin-left: 5px;
   }
 }
