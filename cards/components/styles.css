@@ -1,8 +1,14 @@
+@import "commons/styles/variables.css";
+@import "commons/styles/media-queries.css";
+
 @component Card {
-  display: flex;
-  align-items: center;
   margin: 14px 1px;
   padding: 14px 7px;
+
+  @media (--s) {
+    display: flex;
+    align-items: center;
+  }
 
   @when active {
     background-color: #eee!important;
@@ -15,10 +21,24 @@
 
   @descendent row {}
   @descendent rowList {
-    display: flex;
+
+    @media (--s) {
+      display: flex;
+    }
+
+    @modifier flexRight {
+
+      @media (--s) {
+        justify-content: flex-end;
+        text-align: right;        
+      }
+    }
   }
   @descendent rowItem {
-    margin-left: 10px;
+
+    @media (--s) {
+      margin-left: 10px;
+    }
 
     &:first-child {
       margin-left: 0;
@@ -38,9 +58,4 @@
       height: 16px;
     }
   }
-}
-
-@utility flexRight {
-  justify-content: flex-end;
-  text-align: right;
 }

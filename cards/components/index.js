@@ -16,7 +16,7 @@ export const CardDivider = () =>
     <div className="Card-divider"/>
 
 export const CardRows = ({children, flexRight = false, ...props}) => <
-    div className={"Card-rowList" + (flexRight ? " u-flexRight" : "")} {...props}>
+    div className={"Card-rowList" + (flexRight ? " Card-rowList--flexRight" : "")} {...props}>
   {children}
 </div>
 
