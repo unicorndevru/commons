@@ -1,0 +1,34 @@
+
+@import "commons/styles/variables.css";
+@import "commons/styles/media-queries.css";
+
+@component AppHeader {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 11px 24px 24px 124px;
+  height: 100px;
+  background-color: #fff;
+  z-index: var(--AppHeader-zIndex);
+
+  @media (--m) {
+    padding-left: 24px;
+  }
+
+  @descendent menuBtn {
+    position: absolute;
+    top: 13px;
+    left: 11px;
+
+    @media (--m) {
+      display: none;
+    }
+  }
+
+  @descendent container {
+    display: flex;
+  }
+
+  @descendent divider {
+    flex: 1;
+  }
+}
