@@ -6,7 +6,6 @@
   position: relative;
   margin-bottom: 20px;
   padding: 11px 24px 24px 124px;
-  height: 100px;
   background-color: #fff;
   z-index: var(--AppHeader-zIndex);
 

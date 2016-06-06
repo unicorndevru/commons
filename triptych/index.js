@@ -56,8 +56,8 @@ export const TriptychRight = connect(
 })
 
 export const TriptychMainWrapper = (Component, onCloseTo) => ({children, ...props}) =>
-    <div className="AppLayout-wrapContainer">
-      <TriptychMain><Component {...props}/></TriptychMain>
+    <div className="AppLayout-wrapContent">
+      <Component {...props}/>
       {children && <TriptychRight onCloseTo={onCloseTo}>{ children }</TriptychRight> }
     </div>
 
@@ -91,9 +91,7 @@ const TriptychView = ({leftPanel = "leftPanel", projectTitle = "", onLogout = ()
             onLogout={onLogout}
         >{ leftPanel }</AppLeftPanel>
         <div className="AppLayout-wrap">
-          <div className="AppLayout-wrapContent">
-            {children}
-          </div>
+          {children}
         </div>
       </Grid>
   )
