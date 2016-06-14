@@ -53,6 +53,7 @@ export default createReducer({prevPath: []}, {
     ...state,
     query: action.state.location.query || (action.state.location.search && queryString.parse(action.state.location.search)) || {},
     params: action.state.params,
+    pathname: action.state.location.pathname,
     resolving: true
   })
 })
