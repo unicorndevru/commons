@@ -1,0 +1,55 @@
+
+@import "commons/styles/variables.css";
+@import "commons/styles/media-queries.css";
+
+@component Button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  @modifier sm {
+    padding: 4px 8px;
+  }
+
+  @modifier mobile {
+
+  }
+
+  @modifier default {
+    background-color: #F5F5F5;
+    color: #212121;
+    pointer-events: none;
+  }
+
+  @modifier disabled {
+    background-color: #BDBDBD;
+    color: #212121;
+    pointer-events: none;
+  }
+
+  @descendent iconContainer {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .Button--mobile & {
+      margin-right: 0;
+
+      @media (--m) {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  @descendent title {
+    .Button--mobile & {
+      display: none;
+
+      @media (--m) {
+        display: block;
+      }
+    }
+  }
+}
