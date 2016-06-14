@@ -4,7 +4,7 @@ import {FlatButton} from "material-ui";
 import Menu from "material-ui/svg-icons/navigation/menu";
 import Button from "commons/button";
 
-const AppHeader = ({ buttonChild, children, title }) => {
+const AppHeader = ({ button, children, title }) => {
   return (
     <div className="AppHeader">
       <div className="AppHeader-container AppHeader-container--top">
@@ -13,7 +13,7 @@ const AppHeader = ({ buttonChild, children, title }) => {
         </div>
         <h2>{title}</h2>
         <div className="AppHeader-divider" />
-        {buttonChild}
+        {button}
       </div>
       <div className="AppHeader-container AppHeader-container--gray">
         {children}

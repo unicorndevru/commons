@@ -64,6 +64,22 @@ export const TriptychMainWrapper = (Component, onCloseTo) => ({children, ...prop
     {children && <TriptychRight onCloseTo={onCloseTo}>{ children }</TriptychRight> }
   </div>
 
+export const TriptychFullWrapper = (Component, onCloseTo, header = {}) => connect(
+    state => ({
+      title: state.page.title
+    })
+)(({children, title, ...props}) =>
+    <div className="Triptych-wrapContent">
+      <TriptychContent
+        header={{
+          title,
+          ...header
+        }}>
+        <Component {...props}/>
+      </TriptychContent>
+      {children && <TriptychRight onCloseTo={onCloseTo}>{ children }</TriptychRight> }
+    </div>)
+
 const TriptychView = (
   {
     leftPanel = "leftPanel",
