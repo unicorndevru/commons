@@ -8,31 +8,31 @@ import {decorateWithState, urlInterpolateStrict} from "commons/utils";
 import {Link} from "react-router";
 import Close from "material-ui/svg-icons/navigation/close";
 
-const AppLeftPanel = ({children, projectTitle, active, onLogout}) => {
-    const AppLeftPanelClasses = classnames(
-        'AppLeftPanel',
-        {'is-active': active},
-    );
+import WrapContainer from "./wrapContainer/index"
+import Main from "./main/index"
+import Header from "./header/index"
 
-    return (
-        <div className={AppLeftPanelClasses} id="triptych-menu">
-            <div className="AppLeftPanel-container">
-                <div className="AppLeftPanel-header">
-                    <Link className="AppLeftPanel-logoLink" to="/">{ projectTitle }</Link>
-                </div>
-                { children }
-            </div>
-            <div className="AppLeftPanel-footer">
-                <a className="AppLeftPanel-footerLink" onClick={onLogout}>Выйти</a>
-            </div>
+const AppLeftPanel = ({children, projectTitle, onLogout}) => {
+  return (
+    <div className="AppLeftPanel" id="triptych-menu">
+      <div className="AppLeftPanel-container">
+        <div className="AppLeftPanel-header">
+          <Link className="AppLeftPanel-logoLink" to="/">{ projectTitle }</Link>
         </div>
-    );
+        { children }
+      </div>
+      <div className="AppLeftPanel-footer">
+        <a className="AppLeftPanel-footerLink" onClick={onLogout}>Выйти</a>
+      </div>
+    </div>
+  );
 };
 
-export const TriptychMain = ({children}) =>
-    <div className="AppMain">
-        { children }
-    </div>;
+export const TriptychContent = ({header, children}) =>
+  <WrapContainer>
+    <Header {...header}/>
+    <Main>{children}</Main>
+  </WrapContainer>
 
 export const TriptychRight = connect(
     (state) => ({
@@ -40,56 +40,70 @@ export const TriptychRight = connect(
         query: state.resolve.query
     })
 )(({children, onCloseTo, params, query}) => {
-    const link = urlInterpolateStrict(onCloseTo, params, query)
+  const link = urlInterpolateStrict(onCloseTo, params, query)
 
-    return (<div className="AppRightPanel">
+  return (<div className="AppRightPanel">
+    <div className="AppRightPanel-container">
+      <div className="AppRightPanel-header">
         <div className="AppRightPanel-closeBtnContainer">
-            <Link to={link}>
-                <IconButton>
-                    <Close />
-                </IconButton>
-            </Link>
+          <Link to={link}>
+            <IconButton><Close /></IconButton>
+          </Link>
         </div>
+      </div>
+      <div className="AppRightPanel-main">
         { children }
-    </div>);
+      </div>
+    </div>
+  </div>);
 })
 
 export const TriptychMainWrapper = (Component, onCloseTo) => ({children, ...props}) =>
-    <div className="AppLayout-wrapContent">
-        <Component {...props}/>
-        {children && <TriptychRight onCloseTo={onCloseTo}>{ children }</TriptychRight> }
-    </div>
+  <div className="Triptych-wrapContent">
+    <Component {...props}/>
+    {children && <TriptychRight onCloseTo={onCloseTo}>{ children }</TriptychRight> }
+  </div>
 
-const TriptychView = ({leftPanel = "leftPanel", projectTitle = "", onLogout = () => "", children, state, setState}) => {
+const TriptychView = (
+  {
+    leftPanel = "leftPanel",
+    projectTitle = "",
+    onLogout = () => "",
+    children, state, setState
+  }) => {
+    const TriptychClasses = classnames(
+      'Triptych',
+      {'is-LeftPanelOpened': state.leftPanelActive},
+    );
     const closeOnClick = (e) => {
-        if (state.leftPanelActive) {
-            let el = e.target;
-            let inPanel = false;
-            do {
-                if (el.id === "triptych-menu") {
-                    inPanel = true;
-                    break;
-                }
-            } while (el = el.parentNode)
-            if (!inPanel) setState({leftPanelActive: false})
-        } else {
-            let el = e.target;
-            do {
-                if (el.id === "triptych-open-menu") {
-                    setState({leftPanelActive: true})
-                    break;
-                }
-            } while (el = el.parentNode)
-        }
+      if (state.leftPanelActive) {
+        let el = e.target;
+        let inPanel = false;
+        do {
+          if (el.id === "triptych-menu") {
+            inPanel = true;
+            break;
+          }
+        } while (el = el.parentNode)
+        if (!inPanel) setState({leftPanelActive: false})
+      } else {
+        let el = e.target;
+        do {
+          if (el.id === "triptych-open-menu") {
+            setState({leftPanelActive: true})
+            break;
+          }
+        } while (el = el.parentNode)
+      }
     }
     return (
-        <Grid className="AppLayout" layout="column" onClick={closeOnClick}>
+        <Grid className={TriptychClasses} layout="column" onClick={closeOnClick}>
             <AppLeftPanel
                 active={state.leftPanelActive}
                 projectTitle={projectTitle}
                 onLogout={onLogout}
             >{ leftPanel }</AppLeftPanel>
-            <div className="AppLayout-wrap">
+            <div className="Triptych-wrap">
                 {children}
             </div>
         </Grid>

@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-@component AppLayout {
+@component Triptych {
   width: 100%;
   min-height: 100%;
   min-height: 100vh;
@@ -22,9 +22,13 @@
     flex-direction: column;
     height: 100vh;
     flex: 1 1 auto;
+    will-change: transform;
 
-    @media (--m) {
-      margin-left: 250px;
+    .is-LeftPanelOpened & {
+      @media (--m) {
+        margin-left: 250px;
+        transition: margin-left 0.3s ease;
+      }
     }
   }
   @descendent wrapContent {
@@ -58,11 +62,7 @@
   backface-visibility: hidden;
   will-change: transform;
 
-  @media (--m) {
-    transform: translateX(0);
-  }
-
-  @when active {
+  .is-LeftPanelOpened & {
     animation-iteration-count: 1;
     animation-duration: 0.3s;
     animation-timing-function: ease;
@@ -111,7 +111,6 @@
   bottom: 0;
   z-index: var(--AppRightPanel-zIndex);
 
-  padding: 2px 24px 24px 24px;
   width: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -128,6 +127,8 @@
 
   @media (--m) {
     width: 500px;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: hidden;
   }
   @media (--xl) {
     position: static;
@@ -145,6 +146,31 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    z-index: 10;
+  }
+
+  @descendent container {
+    @media (--m) {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      height: 100vh;
+    }
+  }
+  @descendent header {
+    padding: 2px 24px 24px;
+  }
+  @descendent main {
+    padding: 24px;
+
+    @media (--m) {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      flex: 1;
+    }
+  }
+  @descendent footer {
+    padding: 24px;
   }
 }
 

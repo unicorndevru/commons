@@ -1,33 +1,47 @@
 import "./styles.css";
 import React from "react";
 import classnames from "classnames";
+import {connect} from "react-redux";
+import {push} from "react-router-redux";
 
-const Button = ({children, color, className, disabled, id, icon, mobile, size, title, onClick = () => null}) => {
+const mapDispatchToProps = {
+  actionHref: (url) => push(url)
+}
+
+const mapStateToProps = (state) => ({})
+
+const Button = ({color, id, className, disabled, icon, mobile, size, title, url, actionHref}) => {
   const buttonClasses = classnames(
-    'Button',
-    {
-      [`Button--${color}`]: color,
-      [`Button--${size}`]: size,
-      'Button--mobile': mobile,
-      'Button--disabled': disabled,
-    },
-    className
+      'Button',
+      {
+        [`Button--${color}`]: color,
+        [`Button--${size}`]: size,
+        'Button--mobile': mobile,
+        'Button--disabled': disabled,
+      },
+      className
   );
 
+  const onClick = () => {
+    if (!!url) actionHref(url)
+  }
+
   return (
-    <div className={buttonClasses} id={id}>
-      {icon &&
-        <div className="Button-iconContainer">
-          {icon}
+      <div onClick={onClick}>
+        <div className={buttonClasses} id={id}>
+          {icon &&
+          <div className="Button-iconContainer">
+            {icon}
+          </div>
+          }
+          {title &&
+          <div className="Button-title">
+            {title}
+          </div>
+          }
         </div>
-      }
-      {title &&
-        <div className="Button-title">
-          {title}
-        </div>
-      }
-    </div>
+      </div>
   );
 };
 
-export default Button;
+export default connect(mapStateToProps, mapDispatchToProps)(Button);
