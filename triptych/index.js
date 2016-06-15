@@ -88,7 +88,7 @@ const TriptychView = ({
   const TriptychClasses = classnames(
       'Triptych',
       {'is-LeftPanelOpened': state.leftPanelActive === 'opened'},
-      {'is-LeftPanelHidden`': state.leftPanelActive === 'hidden'},
+      {'is-LeftPanelHidden': state.leftPanelActive === 'hidden'},
   );
   const closeOnClick = (e) => {
     let el = e.target;
