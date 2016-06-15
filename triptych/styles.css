@@ -24,10 +24,21 @@
     flex: 1 1 auto;
     will-change: transform;
 
+    @media (--m) {
+      margin-left: 250px;
+    }
+    .is-LeftPanelAnimated & {
+      margin-left: 250px;
+      transition: margin-left 0.3s ease;
+    }
     .is-LeftPanelOpened & {
+      margin-left: 250px;
+      transition: margin-left 0.3s ease;
+    }
+    .is-LeftPanelHidden & {
       @media (--m) {
-        margin-left: 250px;
-        transition: margin-left 0.3s ease;
+        margin-left: 0;
+        transition: none;
       }
     }
   }
@@ -62,13 +73,26 @@
   backface-visibility: hidden;
   will-change: transform;
 
-  .is-LeftPanelOpened & {
+  .is-LeftPanelAnimated & {
     animation-iteration-count: 1;
     animation-duration: 0.3s;
     animation-timing-function: ease;
     animation-fill-mode: both;
     animation-name: LeftPanel-ShowAnimation;
   }
+
+  @media (--m) {
+    transform: translateX(0);
+  }
+
+  .is-LeftPanelOpened & {
+    transform: translateX(0);
+  }
+
+  .is-LeftPanelHidden & {
+    transform: translateX(-100%);
+  }
+
 
   @descendent container {
     margin-bottom: 70px;
