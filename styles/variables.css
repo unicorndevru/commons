@@ -11,4 +11,24 @@
   --AppHeader-zIndex: 0;
   --AppLeftPanel-zIndex: 11;
   --AppRightPanel-zIndex: 12;
+
+  /*
+    Fonts:
+  */
+
+  --default-font: Helvetica, Arial, sans-serif;
+
+  --text-font-size: 13px;
+
+  /*
+    Colors:
+  */
+
+  --text-color: #212121;
+
+  --info-color: #E0E0E0;
+  --primary-color: #42A5F5;
+  --success-color: #9CCC65;
+  --danger-color: #FFCA28;
+  --warning-color: #EF5350;
 }

@@ -1,0 +1,33 @@
+
+@import "commons/styles/variables.css";
+@import "commons/styles/media-queries.css";
+
+@component Notice {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 12px 24px;
+
+  @modifier success {
+    background-color: var(--success-color);
+  }
+
+  @descendent iconContainer {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .Button--mobile & {
+      margin-right: 0;
+
+      @media (--m) {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  @descendent title {
+  }
+}
