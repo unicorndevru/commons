@@ -11,7 +11,7 @@ import WrapContainer from "./wrapContainer/index";
 import Main from "./main/index";
 import Header from "./header/index";
 
-const AppLeftPanel = ({children, projectTitle, onLogout}) => {
+const AppLeftPanel = ({children, projectTitle, onLogout, isLoggedIn}) => {
   return (
       <div className="AppLeftPanel" id="triptych-menu">
         <div className="AppLeftPanel-container">
@@ -20,9 +20,9 @@ const AppLeftPanel = ({children, projectTitle, onLogout}) => {
           </div>
           { children }
         </div>
-        <div className="AppLeftPanel-footer">
+        { isLoggedIn && <div className="AppLeftPanel-footer">
           <a className="AppLeftPanel-footerLink" onClick={onLogout}>Выйти</a>
-        </div>
+        </div> }
       </div>
   );
 };
@@ -83,6 +83,7 @@ const TriptychView = ({
     leftPanel = "leftPanel",
     projectTitle = "",
     onLogout = () => "",
+    isLoggedIn,
     children, state, setState
 }) => {
   const TriptychClasses = classnames(
@@ -120,9 +121,9 @@ const TriptychView = ({
   return (
       <Grid className={TriptychClasses} layout="column" onClick={closeOnClick}>
         <AppLeftPanel
-            active={state.leftPanelActive}
             projectTitle={projectTitle}
             onLogout={onLogout}
+            isLoggedIn={isLoggedIn}
         >{ leftPanel }</AppLeftPanel>
         <div className="Triptych-wrap">
           {children}
