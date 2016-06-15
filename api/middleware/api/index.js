@@ -40,7 +40,7 @@ export default (store) => next => action => {
           if(result && result.statusCode === 401){
             next(logout())
           }
-          if(result.statusCode >= 500) {
+          if(typeof result === 'undefined' || result.statusCode >= 500) {
             console.log("Api Failure", error);
           }
           return next(createFailureAction(action, result))
