@@ -4,15 +4,21 @@
 
 @component AppHeader {
   position: relative;
-  padding: 2px 0 24px;
+  padding: 0;
   background-color: #fff;
   z-index: var(--AppHeader-zIndex);
 
   @descendent top {
     padding-left: 40px;
+    min-height: 60px;
 
     @media (--m) {
       padding-left: 8%;
+    }
+
+    @descendent title {
+      margin-top: 0;
+      margin-bottom: 0;
     }
   }
 
