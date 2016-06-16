@@ -9,7 +9,7 @@
   z-index: var(--AppHeader-zIndex);
 
   @descendent top {
-    padding-left: 40px;
+    padding: 22px 24px 22px 40px;
     min-height: 60px;
 
     @media (--m) {
@@ -26,24 +26,19 @@
 
     @media (--m) {
       position: absolute;
-      top: 15px;
+      top: 22px;
       left: 13px;
     }
   }
 
   @descendent container {
     display: flex;
-    align-items: center;
     padding-left: 24px;
     padding-right: 24px;
 
     @media (--m) {
       padding-right: 8%;
       padding-left: 8%;
-    }
-
-    @modifier top {
-
     }
 
     @modifier gray {
