@@ -35,6 +35,11 @@ export default createReducer({}, {
     ...action.result.body
   }),
 
+  [LOGIN_USER.SUCCESS]: (state, action) => ({
+    ...state,
+    ...action.result.body
+  }),
+
   [LOGOUT_USER]: (state, action) => {
     return {}
   }
