@@ -23,7 +23,7 @@ export const getAuth = () => {
   }, GET_AUTH);
 };
 
-export const login = (email, password, redirect) => {
+export const login = (email, password) => {
   return createApiAction({
     url: '/auth?_expand=user',
     method: 'POST',
@@ -31,20 +31,18 @@ export const login = (email, password, redirect) => {
       email,
       password,
       provider: 'email'
-    },
-    redirect: redirect
+    }
   }, LOGIN_USER);
 };
 
-export const signup = (fields, redirect) => {
+export const signup = (fields) => {
   return createApiAction({
     url: '/auth?_expand=user',
     method: 'PUT',
     data: {
       ...fields,
       provider: 'email'
-    },
-    redirect: redirect
+    }
   }, SIGNUP_USER);
 };
 
