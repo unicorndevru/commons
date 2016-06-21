@@ -10,7 +10,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({})
 
-const Button = ({color, id, className, disabled, icon, mobile, size, title, url, actionHref}) => {
+const Button = ({color, id, className, disabled, icon, mobile, size, title, url, actionHref, onClick}) => {
   const buttonClasses = classnames(
       'Button',
       {
@@ -22,12 +22,12 @@ const Button = ({color, id, className, disabled, icon, mobile, size, title, url,
       className
   );
 
-  const onClick = () => {
+  const action = onClick || (() => {
     if (!!url) actionHref(url)
-  }
+  })
 
   return (
-      <div onClick={onClick}>
+      <div onClick={action}>
         <div className={buttonClasses} id={id}>
           {icon &&
           <div className="Button-iconContainer">
