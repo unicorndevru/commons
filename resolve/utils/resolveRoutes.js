@@ -1,7 +1,8 @@
-import { filter, map, propOr, zip, is, identity, F, zipWith, equals, concat, drop, addIndex } from 'ramda'
+import { filter, map, propOr, zip, is, identity, F, zipWith, equals, concat, drop, addIndex, mergeAll } from 'ramda'
 import { call, fork, select, put } from 'redux-saga/effects'
 import {STOP_RESOLVE} from 'commons/resolve/constants'
 import {resolveSagaStart, resolveSagaEnd, resolveSetPrevPath} from 'commons/resolve/redux/actions'
+import {setPageProps} from 'commons/page'
 
 const mapIndexed = addIndex(map)
 
@@ -54,7 +55,22 @@ export default function* (store, state){
         }
       }
     }
-
-    yield put(resolveSetPrevPath(routePath))
   }
+
+  const routePageProps = filter((p) => !!p, map(propOr(null, 'pageProps'))(routes))
+  const pagePropsArray = []
+  while(0 < routePageProps.length) {
+    try {
+      pagePropsArray.push(yield call(routePageProps.shift()))
+    } catch(e) {
+      console.error("Page props resolve error: ", e, e.stack);
+      break
+    }
+  }
+
+  const pageProps = mergeAll(pagePropsArray)
+
+  yield put(setPageProps(pageProps))
+
+  yield put(resolveSetPrevPath(routePath))
 }

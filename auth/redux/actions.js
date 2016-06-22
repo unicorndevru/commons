@@ -3,10 +3,12 @@ import {
   SIGNUP_USER,
   LOGOUT_USER,
   GET_AUTH,
-  UPDATE_TOKEN
-} from './constants';
-
-import { createApiAction } from 'commons/api';
+  UPDATE_TOKEN,
+  AUTH_RECOVERY_START,
+  AUTH_RECOVERY_CHECK,
+  AUTH_RECOVER
+} from "./constants";
+import {createApiAction} from "commons/api";
 
 export const updateToken = (token) => {
   return {
@@ -21,7 +23,7 @@ export const getAuth = () => {
   }, GET_AUTH);
 };
 
-export const login = (email, password, redirect) => {
+export const login = (email, password) => {
   return createApiAction({
     url: '/auth?_expand=user',
     method: 'POST',
@@ -29,20 +31,18 @@ export const login = (email, password, redirect) => {
       email,
       password,
       provider: 'email'
-    },
-    redirect: redirect
+    }
   }, LOGIN_USER);
 };
 
-export const signup = (fields, redirect) => {
+export const signup = (fields) => {
   return createApiAction({
     url: '/auth?_expand=user',
     method: 'PUT',
     data: {
       ...fields,
       provider: 'email'
-    },
-    redirect: redirect
+    }
   }, SIGNUP_USER);
 };
 
@@ -51,3 +51,26 @@ export const logout = () => {
     type: LOGOUT_USER
   };
 };
+
+export const authStartPasswordRecovery = (email) =>
+  createApiAction({
+    url: '/auth/actions/startPasswordRecovery',
+    method: 'POST',
+    data: {email}
+  }, AUTH_RECOVERY_START)
+
+
+export const authCheckPasswordRecovery = (token) =>
+  createApiAction({
+    url: '/auth/actions/checkPasswordRecovery',
+    method: 'POST',
+    data: {token}
+  }, AUTH_RECOVERY_CHECK)
+
+
+export const authRecoverPassword = (token, newPass) =>
+  createApiAction({
+    url: '/auth/actions/recoverPassword',
+    method: 'POST',
+    data: {token, newPass}
+  }, AUTH_RECOVER)

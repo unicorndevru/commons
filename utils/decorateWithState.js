@@ -17,8 +17,11 @@ export default (pureRender, {clearOnPropChange = [], initialState = {}} = {}) =>
     return pureRender({
       ...this.props,
       setState,
-      clearState: () => {
-        setState(map((v) => undefined, state))
+      clearState: (init = {}) => {
+        setState({
+          ...map((v) => undefined, state),
+          ...init
+        })
       },
       state,
       stateFieldChanged: (fieldName) => (e) => {

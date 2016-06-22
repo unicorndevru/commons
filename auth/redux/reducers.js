@@ -23,31 +23,6 @@ export default createReducer({}, {
     };
   },
 
-  [LOGIN_USER.REQUEST]: (state, action) => {
-    return {
-      ...state,
-      _error: null,
-      _progress: true
-    }
-  },
-
-  [LOGIN_USER.SUCCESS]: (state, action) => {
-    return {
-      ...state,
-      ...action.result.body,
-      _error: null,
-      _progress: false
-    }
-  },
-
-  [LOGIN_USER.FAILURE]: (state, action) => {
-    return {
-      ...state,
-      _progress: false,
-      _error: action.error.body
-    }
-  },
-
   [GET_AUTH.SUCCESS]: (state, action) => {
     return {
       ...state,
@@ -55,25 +30,14 @@ export default createReducer({}, {
     }
   },
 
-  [SIGNUP_USER.REQUEST]: (state, action) => {
-    return {
-      ...state,
-      _error: null,
-      _progress: true,
-    }
-  },
-
   [SIGNUP_USER.SUCCESS]: (state, action) => ({
     ...state,
-    ...action.result.body,
-    _error: null,
-    _progress: false
+    ...action.result.body
   }),
 
-  [SIGNUP_USER.FAILURE]: (state, action) => ({
+  [LOGIN_USER.SUCCESS]: (state, action) => ({
     ...state,
-    _progress: false,
-    _error: action.error.body
+    ...action.result.body
   }),
 
   [LOGOUT_USER]: (state, action) => {
