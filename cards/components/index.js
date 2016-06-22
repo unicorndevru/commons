@@ -1,12 +1,20 @@
 import "./styles.css";
 import React from "react";
-import {Paper} from "material-ui"
+import classnames from "classnames";
 
-export const Card = ({isActive = false, children, ...props}) =>
-    <Paper zDepth={isActive ? 2 : 1} className="Card" {...props}>
+export const Card = ({isActive = false, children, ...props}) => {
+  const cardClasses = classnames(
+      'Card',
+      {
+        'is-active': isActive,
+      }
+  );
+  return (
+    <article className={cardClasses} {...props}>
       {children}
-    </Paper>
-
+    </article>
+  )
+}
 export const CardItem = ({children, ...props}) =>
     <div className="Card-item" {...props}>
       {children}

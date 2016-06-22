@@ -5,13 +5,16 @@
   margin: 14px 1px;
   padding: 14px 7px;
 
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+
   @media (--s) {
     display: flex;
     align-items: center;
   }
 
   @when active {
-    background-color: #eee!important;
+    box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
   }
 
   @descendent item {
@@ -30,7 +33,7 @@
 
       @media (--s) {
         justify-content: flex-end;
-        text-align: right;        
+        text-align: right;
       }
     }
   }
@@ -57,5 +60,9 @@
       width: 16px;
       height: 16px;
     }
+  }
+
+  @descendent titleLink {
+    color: #333;
   }
 }
