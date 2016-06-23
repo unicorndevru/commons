@@ -124,6 +124,11 @@
     font-size: 18px;
     color: #444;
     text-decoration: none;
+
+    &:hover,
+    &:visited {
+      color: #444;
+    }
   }
   @descendent footer {
     position: fixed;
