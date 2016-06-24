@@ -11,13 +11,4 @@ export default createReducer({}, {
       link: action.link || []
     }
   }
-  // ,
-  //
-  // [RESOLVE_ROUTE_START]: (state, action) => {
-  //   return {
-  //     ...state,
-  //     title: null,
-  //     meta: []
-  //   }
-  // }
 })
