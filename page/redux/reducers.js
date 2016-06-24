@@ -7,15 +7,17 @@ export default createReducer({}, {
     return {
       ...state,
       title: action.title,
-      meta: action.meta || []
-    }
-  },
-
-  [RESOLVE_ROUTE_START]: (state, action) => {
-    return {
-      ...state,
-      title: null,
-      meta: []
+      meta: action.meta || [],
+      link: action.link || []
     }
   }
+  // ,
+  //
+  // [RESOLVE_ROUTE_START]: (state, action) => {
+  //   return {
+  //     ...state,
+  //     title: null,
+  //     meta: []
+  //   }
+  // }
 })
