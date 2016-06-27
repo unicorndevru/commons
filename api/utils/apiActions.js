@@ -1,28 +1,16 @@
-import { API } from 'commons/api/constants'
-import { urlInterpolate } from 'commons/utils'
+import {API} from "commons/api/constants";
+import {urlInterpolateStrict} from "commons/utils";
 
 
 export const createApiAction = (config, TYPES) => {
-  const { url, queryParams, data, method = 'GET' } = config
-  const apiAction = {
+  const {url, queryParams, routeParams, data, method = 'GET'} = config
+  return {
     ...config,
     method,
     type: API,
-    types: TYPES
-  }
-
-  if(method === 'GET'){
-    return {
-      ...apiAction,
-      url: urlInterpolate(url, {...queryParams, ...data}),
-      params: {}
-    }
-  } else {
-    return {
-      ...apiAction,
-      url: urlInterpolate(url, {...queryParams}),
-      params: data
-    }
+    types: TYPES,
+    url: urlInterpolateStrict(url, routeParams, queryParams),
+    params: method === 'GET' ? {} : data
   }
 }
 
