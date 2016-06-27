@@ -94,8 +94,12 @@ const TriptychView = ({
   const closeOnClick = (e) => {
     let el = e.target;
     let inPanel = false;
+    let onLink = false;
     let menuOpen = false;
     do {
+      if(el.tagName === 'A' || el.tagName === "a") {
+        onLink = true;
+      }
       if (el.id === "triptych-menu") {
         inPanel = true;
         break;
@@ -105,7 +109,8 @@ const TriptychView = ({
         break;
       }
     } while (el = el.parentNode)
-    if (!inPanel && state.leftPanelActive === 'opened' && (typeof window !== 'undefined' && window.innerWidth < 1280)) setState({leftPanelActive: 'hidden'})
+    if ((!inPanel || onLink) && state.leftPanelActive === 'opened' && (typeof window !== 'undefined' && window.innerWidth < 1280)) setState({leftPanelActive: 'hidden'})
+
     if (menuOpen) switch (state.leftPanelActive) {
       case 'opened':
         setState({leftPanelActive: 'hidden'});
