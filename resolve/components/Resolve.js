@@ -21,9 +21,9 @@ export default function RouteResolve(Component, sagaName) {
     const isResolving = props.isResolving && (!sagaName || props.currentSaga === sagaName)
 
     if(isResolving) {
-      return <Loading {...props}/>
+      return <Loading />
     } else {
-      return <Component {...props}/>
+      return <Component />
     }
   }
 
