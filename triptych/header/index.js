@@ -9,7 +9,7 @@ const AppHeader = ({ button, children, title }) => {
     <div className="AppHeader">
       <div className="AppHeader-container AppHeader-top">
         <div className="AppHeader-menuBtn">
-          <Button icon={<Menu />} size="sm" mobile id="triptych-open-menu" />
+          <Button icon={<Menu />} size="m" mobile id="triptych-open-menu" />
         </div>
         <h2 className="AppHeader-top-title">{title}</h2>
         <div className="AppHeader-divider" />

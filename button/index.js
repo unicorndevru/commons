@@ -27,8 +27,8 @@ const Button = ({color, id, className, disabled, icon, mobile, size, title, url,
   })
 
   return (
-      <div onClick={action}>
-        <div className={buttonClasses} id={id}>
+      <div onClick={action} className={buttonClasses}>
+        <div className="Button-container" id={id}>
           {icon &&
           <div className="Button-iconContainer">
             {icon}
