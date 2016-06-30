@@ -17,13 +17,11 @@ const mapStateToProps = (state) => ({
 
 export default function RouteResolve(Component, sagaName) {
 
-  const RouteResolveComponent = (props) => {
-    const isResolving = props.isResolving && (!sagaName || props.currentSaga === sagaName)
-
-    if(isResolving) {
+  const RouteResolveComponent = ({isResolving, currentSaga, ...props}) => {
+    if(isResolving && (!sagaName || currentSaga === sagaName)) {
       return <Loading />
     } else {
-      return <Component />
+      return <Component {...props} />
     }
   }
 
