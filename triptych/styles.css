@@ -142,6 +142,7 @@
     display: block;
     color: #444;
     text-decoration: none;
+    cursor: pointer;
   }
 }
 @component AppRightPanel {
