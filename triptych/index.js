@@ -38,16 +38,17 @@ export const TriptychRight = connect(
       params: state.resolve.params,
       query: state.resolve.query
     })
-)(({children, onCloseTo, params, query}) => {
-  const link = urlInterpolateStrict(onCloseTo, params, query)
+)(({children, onCloseTo, onClose, params, query}) => {
+  const link = onCloseTo && urlInterpolateStrict(onCloseTo, params, query)
 
   return (<div className="AppRightPanel">
     <div className="AppRightPanel-container">
       <div className="AppRightPanel-header">
         <div className="AppRightPanel-closeBtnContainer">
-          <Link to={link}>
+          { link && <Link to={link}>
             <IconButton><Close /></IconButton>
-          </Link>
+          </Link> }
+          { onClose && <IconButton onClick={onClose}><Close /></IconButton>}
         </div>
       </div>
       <div className="AppRightPanel-main">
