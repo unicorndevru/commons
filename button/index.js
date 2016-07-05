@@ -1,5 +1,5 @@
 import "./styles.css";
-import React from "react";
+import React, { PropTypes } from "react";
 import classnames from "classnames";
 import {Link} from "react-router";
 
@@ -36,6 +36,28 @@ const Button = ({color, id, className, disabled, icon, mobile, size, title, url,
         {buttonContents}
       </div>
   );
+};
+
+Button.propTypes = {
+  className: PropTypes.string,
+  color: PropTypes.oneOf(['danger', 'default', 'success', 'transparent']),
+  disabled: PropTypes.bool,
+  id: PropTypes.string,
+  icon: PropTypes.node,
+  mobile: PropTypes.bool,
+  size: PropTypes.oneOf(['sm', 'm']),
+  title: PropTypes.string,
+  url: PropTypes.string,
+  onClick: PropTypes.func
+};
+
+Button.defaultProps = {
+  className: '',
+  color: 'default',
+  disabled: false,
+  icon: '',
+  size: 'm',
+  onClick: null,
 };
 
 export default Button
