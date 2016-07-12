@@ -12,17 +12,17 @@
     @descendent container {
       position: relative;
       margin-top: 8px;
-      width: 30px;
-      height: 30px;
+      width: 26px;
+      height: 26px;
     }
 
     @descendent line {
       display: block;
       position: absolute;
-      height: 3px;
+      height: 2px;
       width: 100%;
       background: #333;
-      border-radius: 3px;
+      border-radius: 2px;
       opacity: 1;
       left: 0;
       transform: rotate(0deg);
