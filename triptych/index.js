@@ -10,6 +10,7 @@ import Close from "material-ui/svg-icons/navigation/close";
 import WrapContainer from "./wrapContainer/index";
 import Main from "./main/index";
 import Header from "./header/index";
+import MenuButton from 'commons/triptych/menuButton';
 
 const AppLeftPanel = ({children, projectTitle, onLogout, isLoggedIn}) => {
   return (
@@ -130,6 +131,7 @@ const TriptychView = ({
   }
   return (
       <Grid className={TriptychClasses} layout="column" onClick={closeOnClick}>
+        <MenuButton />
         <AppLeftPanel
             projectTitle={projectTitle}
             onLogout={onLogout}

@@ -8,29 +8,6 @@
   background-color: #fff;
   z-index: var(--AppHeader-zIndex);
 
-  @descendent top {
-    padding: 22px 24px 22px 40px;
-    min-height: 60px;
-
-    @media (--m) {
-      padding-left: 8%;
-    }
-
-    @descendent title {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-
-  @descendent menuBtn {
-
-    @media (--m) {
-      position: absolute;
-      top: 22px;
-      left: 13px;
-    }
-  }
-
   @descendent container {
     display: flex;
     padding-left: 24px;
@@ -43,6 +20,20 @@
 
     @modifier gray {
       background-color: #f2f2f2;
+    }
+  }
+
+  @descendent top {
+    padding: 22px 24px 22px 70px;
+    min-height: 60px;
+
+    @media (--m) {
+      padding-left: 8%;
+    }
+
+    @descendent title {
+      margin-top: 0;
+      margin-bottom: 0;
     }
   }
 
