@@ -144,4 +144,4 @@ const TriptychView = ({
   )
 }
 
-export const Triptych = decorateWithState(TriptychView, {initialState: {leftPanelActive: 'default'}})
+export const Triptych = decorateWithState(TriptychView, {initialState: {leftPanelActive: 'hidden'}})

@@ -24,9 +24,6 @@
     flex: 1 1 auto;
     will-change: transform;
 
-    @media (--m) {
-      margin-left: 250px;
-    }
     .is-LeftPanelAnimated & {
       @media (--m) {
         margin-left: 250px;
@@ -82,10 +79,6 @@
     animation-timing-function: ease;
     animation-fill-mode: both;
     animation-name: LeftPanel-ShowAnimation;
-  }
-
-  @media (--m) {
-    transform: translateX(0);
   }
 
   .is-LeftPanelOpened & {
