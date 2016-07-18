@@ -8,7 +8,7 @@ const AppHeader = ({ button, children, title }) => {
       <div className="AppHeader-container AppHeader-top">
         <h2 className="AppHeader-top-title">{title}</h2>
         <div className="AppHeader-divider" />
-        {button}
+        <div>{button}</div>
       </div>
       <div className="AppHeader-container AppHeader-container--gray">
         {children}
