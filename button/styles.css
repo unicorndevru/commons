@@ -12,6 +12,10 @@
     text-decoration: none;
   }
 
+  &.Button--disabled:visited {
+    color: #212121;
+  }
+
   @descendent container {
     display: flex;
     align-items: center;
