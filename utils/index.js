@@ -6,3 +6,4 @@ export createReducer from './createReducer'
 export decorateWithState from './decorateWithState'
 export urlInterpolateStrict from './urlInterpolateStrict'
 export urlInterpolate from './urlInterpolate'
+export pickError from "./pickError"
