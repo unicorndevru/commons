@@ -26,7 +26,7 @@ export default (googleTrackingCode, yandexCode) => function* trackSaga() {
 
       const ga = window.ga;
 
-      ga('create', trackingCode, 'auto');
+      ga('create', googleTrackingCode, 'auto');
     }
 
     if (!!yandexCode) {
