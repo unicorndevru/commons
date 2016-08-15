@@ -67,6 +67,7 @@ export default (googleTrackingCode, yandexCode) => function* trackSaga() {
         title: document.title,
         hitCallback: () => console.log('ga pageview sent', page)
       })
+      yandexCode && window[`yaCounter${yandexCode}`].hit(page)
 
     })
   }
