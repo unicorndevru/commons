@@ -131,6 +131,13 @@
     width: 250px;
     background-color: #f2f2f2;
   }
+  @descendent footerItem {
+    margin-bottom: 24px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
   @descendent footerLink {
     display: block;
     color: #444;

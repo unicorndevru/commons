@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import Grid from 'react-material-grid';
-import { IconButton } from 'material-ui';
+import { IconButton, MenuItem, SelectField } from 'material-ui';
 import { decorateWithState, urlInterpolateStrict } from 'commons/utils';
 import { Link } from 'react-router';
 import Close from 'material-ui/svg-icons/navigation/close';
@@ -13,6 +13,7 @@ import Header from './header/index';
 import MenuButton from 'commons/triptych/menuButton';
 
 const AppLeftPanel = ({ children, projectTitle, onLogout, isLoggedIn }) => {
+
   return (
     <div className="AppLeftPanel" id="triptych-menu">
       <div className="AppLeftPanel-container">
@@ -21,9 +22,18 @@ const AppLeftPanel = ({ children, projectTitle, onLogout, isLoggedIn }) => {
         </div>
         { children }
       </div>
-      { isLoggedIn && <div className="AppLeftPanel-footer">
-        <a className="AppLeftPanel-footerLink" onClick={onLogout}>Выйти</a>
-      </div> }
+      <div className="AppLeftPanel-footer">
+        <div className="AppLeftPanel-footerItem">
+          <SelectField value={1} fullWidth={true}>
+            <MenuItem value={1} primaryText="Русский" />
+            <MenuItem value={2} primaryText="English" />
+            <MenuItem value={3} primaryText="Español" />
+          </SelectField>
+        </div>
+        { isLoggedIn && <div className="AppLeftPanel-footerItem">
+          <a className="AppLeftPanel-footerLink" onClick={onLogout}>Выйти</a>
+        </div> }
+      </div>
     </div>
   );
 };
