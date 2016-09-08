@@ -6,7 +6,8 @@ import {
   UPDATE_TOKEN,
   AUTH_RECOVERY_START,
   AUTH_RECOVERY_CHECK,
-  AUTH_RECOVER
+  AUTH_RECOVER,
+SET_HEADER
 } from "./constants";
 import {createApiAction} from "commons/api";
 
@@ -74,3 +75,9 @@ export const authRecoverPassword = (token, newPass) =>
     method: 'POST',
     data: {token, newPass}
   }, AUTH_RECOVER)
+
+export const setHeader = (name, value) => ({
+  type: SET_HEADER,
+  name,
+  value
+})

@@ -9,3 +9,4 @@ export const AUTH_RECOVER = createActionRequestTypes('AUTH_RECOVER')
 
 export const UPDATE_TOKEN = 'UPDATE_TOKEN'
 export const LOGOUT_USER = 'LOGOUT_USER'
+export const SET_HEADER = 'AUTH_SET_HEADER'

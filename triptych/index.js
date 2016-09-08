@@ -23,7 +23,7 @@ const AppLeftPanel = ({ children, footerItems = [], projectTitle, onLogout, isLo
         { children }
       </div>
       <div className="AppLeftPanel-footer">
-        {map(i =><div className="AppLeftPanel-footerItem">
+        {map(i =><div className="AppLeftPanel-footerItem" key={i.key}>
           {i}
         </div>, footerItems)}
         { isLoggedIn && <div className="AppLeftPanel-footerItem">
