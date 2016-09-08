@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import Grid from 'react-material-grid';
-import { IconButton, MenuItem, SelectField } from 'material-ui';
+import { IconButton } from 'material-ui';
 import { decorateWithState, urlInterpolateStrict } from 'commons/utils';
 import { Link } from 'react-router';
 import Close from 'material-ui/svg-icons/navigation/close';
@@ -11,9 +11,9 @@ import WrapContainer from './wrapContainer/index';
 import Main from './main/index';
 import Header from './header/index';
 import MenuButton from 'commons/triptych/menuButton';
+import {map} from 'ramda';
 
-const AppLeftPanel = ({ children, projectTitle, onLogout, isLoggedIn }) => {
-
+const AppLeftPanel = ({ children, footerItems = [], projectTitle, onLogout, isLoggedIn }) => {
   return (
     <div className="AppLeftPanel" id="triptych-menu">
       <div className="AppLeftPanel-container">
@@ -23,13 +23,9 @@ const AppLeftPanel = ({ children, projectTitle, onLogout, isLoggedIn }) => {
         { children }
       </div>
       <div className="AppLeftPanel-footer">
-        <div className="AppLeftPanel-footerItem">
-          <SelectField value={1} fullWidth={true}>
-            <MenuItem value={1} primaryText="Русский" />
-            <MenuItem value={2} primaryText="English" />
-            <MenuItem value={3} primaryText="Español" />
-          </SelectField>
-        </div>
+        {map(i =><div className="AppLeftPanel-footerItem">
+          {i}
+        </div>, footerItems)}
         { isLoggedIn && <div className="AppLeftPanel-footerItem">
           <a className="AppLeftPanel-footerLink" onClick={onLogout}>Выйти</a>
         </div> }
@@ -97,6 +93,7 @@ export const TriptychFullWrapper = (Component, onCloseTo, header = {}) => connec
 
 const TriptychView = ({
   leftPanel = "leftPanel",
+  leftPanelBottomItems = [],
   projectTitle = "",
   onLogout = () => "",
   isLoggedIn,
@@ -146,6 +143,7 @@ const TriptychView = ({
         projectTitle={projectTitle}
         onLogout={onLogout}
         isLoggedIn={isLoggedIn}
+        footerItems={leftPanelBottomItems}
       >{ leftPanel }</AppLeftPanel>
       <div className="Triptych-wrap">
         {children}
