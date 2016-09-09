@@ -1,12 +1,13 @@
 import {
-    RESOLVE_ROUTE_END,
-    RESOLVE_ROUTE_START,
-    RESOLVE_SAGA_END,
-    RESOLVE_SAGA_START,
-    RESOLVED_ON_SERVER,
-    RESOLVE_KEEP,
-    RESOLVE_SET_PREV_PATH
-} from "./constants";
+  RESOLVE_ROUTE_END,
+  RESOLVE_ROUTE_START,
+  RESOLVE_SAGA_END,
+  RESOLVE_SAGA_START,
+  RESOLVED_ON_SERVER,
+  RESOLVE_KEEP,
+  RESOLVE_SET_PREV_PATH,
+  RESOLVE_RELOAD
+} from './constants';
 
 export const resolvedOnServer = () => ({
   type: RESOLVED_ON_SERVER
@@ -36,4 +37,8 @@ export const resolveSagaEnd = () => ({
 
 export const resolveKeep = () => ({
   type: RESOLVE_KEEP
+})
+
+export const resolveReload = () => ({
+  type: RESOLVE_RELOAD
 })
