@@ -49,11 +49,14 @@ export default createReducer({prevPath: []}, {
     currentSaga: null
   }),
 
-  [HISTORY_CHANGE]: (state, action) => ({
+  [HISTORY_CHANGE]: (state, action) => action.state && ({
     ...state,
     query: action.state.location.query || (action.state.location.search && queryString.parse(action.state.location.search)) || {},
     params: action.state.params,
     pathname: action.state.location.pathname,
+    resolving: true
+  }) || ({
+    ...state,
     resolving: true
   })
 })

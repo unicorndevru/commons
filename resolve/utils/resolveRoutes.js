@@ -6,18 +6,27 @@ import { setPageProps } from 'commons/page';
 
 const mapIndexed = addIndex(map)
 
-export default function*(store, { routes }) {
+let lastRoutes = []
+
+export default function*(store, state) {
+
+  const isReload = !state
+  const actualRoutes = state && state.routes || lastRoutes
+
+  if(!isReload) {
+    lastRoutes = actualRoutes
+  }
 
   const prevPath = yield select((s) => s.resolve.prevPath)
 
-  const routeSagas = map(propOr(F, 'resolve'))(routes)
+  const routeSagas = map(propOr(F, 'resolve'))(actualRoutes)
 
   const routeParams = yield select((s) => s.resolve.params)
-  const routePath = map((p) => p.startsWith(":") ? routeParams[p.substring(1)] : p)(map(propOr('', 'path'))(routes))
+  const routePath = map((p) => p.startsWith(":") ? routeParams[p.substring(1)] : p)(map(propOr('', 'path'))(actualRoutes))
 
   let pathChanged = false
 
-  const actualSagas = mapIndexed((s, i) => {
+  const actualSagas = isReload ? routeSagas : mapIndexed((s, i) => {
     if (pathChanged) {
       return s
     } else if (i === prevPath.length || prevPath[i] !== routePath[i]) {
@@ -56,7 +65,7 @@ export default function*(store, { routes }) {
     }
   }
 
-  const routePageProps = filter((p) => !!p, map(propOr(null, 'pageProps'))(routes))
+  const routePageProps = filter((p) => !!p, map(propOr(null, 'pageProps'))(actualRoutes))
   const pagePropsArray = []
   while (0 < routePageProps.length) {
     try {

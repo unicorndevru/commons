@@ -8,7 +8,7 @@ import { RESOLVE_RELOAD } from '../redux/constants';
 
 
 export default function* resolve() {
-  yield* takeLatest(HISTORY_CHANGE, function* resolveSage({ store, state }) {
+  yield* takeLatest([HISTORY_CHANGE, RESOLVE_RELOAD], function* resolveSage({ store, state }) {
     if (!(yield select(s => s.resolve.isClientFirstResolve))) {
       yield put(resolveStart())
       yield resolveRoutes(store, state)
