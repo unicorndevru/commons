@@ -5,9 +5,9 @@ import { createReducer } from 'commons/utils';
 export default createReducer({}, {
   [RESOLVED_ON_SERVER]: (state, action) => ({
     ...state,
-    headers: {
+    headers: (state.headers && state.headers['accept-language']) ? {
       'accept-language': state.headers['accept-language']
-    }
+    } : {}
   }),
 
   [SET_HEADER]: (state, action) => ({
