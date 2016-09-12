@@ -22,7 +22,7 @@ export default function*(store, state) {
   const routeSagas = map(propOr(F, 'resolve'))(actualRoutes)
 
   const routeParams = yield select((s) => s.resolve.params)
-  const routePath = map((p) => p.startsWith(":") ? routeParams[p.substring(1)] : p)(map(propOr('', 'path'))(actualRoutes))
+  const routePath = map((p) => p.startsWith(':') ? routeParams[p.substring(1)] : p)(map(propOr('', 'path'))(actualRoutes))
 
   let pathChanged = false
 
@@ -46,10 +46,10 @@ export default function*(store, state) {
       result = yield call(saga)
       yield put(resolveSagaEnd())
       if (result === STOP_RESOLVE) {
-        //console.log("STOP RESOLVE")
+        // console.log("STOP RESOLVE")
         actualSagas.splice(0, routeSagas.length)
       }
-      //console.log("should be defined:", result)
+      // console.log("should be defined:", result)
     } catch (e) {
       console.error("Resolve error: ", e, e.stack);
     }
