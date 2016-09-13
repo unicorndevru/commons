@@ -1,7 +1,7 @@
 import { LOGIN_USER, LOGOUT_USER, SIGNUP_USER, GET_AUTH, UPDATE_TOKEN, SET_HEADER } from './constants';
 import { RESOLVED_ON_SERVER } from 'commons/resolve/redux/constants';
 import { createReducer } from 'commons/utils';
-console.log("hi there")
+
 export default createReducer({}, {
   [RESOLVED_ON_SERVER]: (state, action) => ({
     ...state,
