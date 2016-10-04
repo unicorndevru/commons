@@ -36,6 +36,16 @@ export const login = (email, password) => {
   }, LOGIN_USER);
 };
 
+export const loginByToken = (provider, token) =>
+  createApiAction({
+    url: '/auth?_expand=user',
+    method: 'POST',
+    data: {
+      token,
+      provider
+    }
+  }, LOGIN_USER)
+
 export const signup = (fields) => {
   return createApiAction({
     url: '/auth?_expand=user',
